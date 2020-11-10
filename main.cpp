@@ -185,9 +185,6 @@ bool analyze_syntax(vector<tokens>& token_vect, ofstream& output_file) {
 			string top_of_stack;
 			string token;
 
-			cout << "------------------------------------------" << endl;
-			cout << "Token: " << left << setw(25) << current->token <<
-				"Lexeme: " << current->lexeme << endl;
 			output_file << "------------------------------------------" << endl;
 			output_file << "Token: " << left << setw(25) << current->token <<
 				"Lexeme: " << current->lexeme << endl;
@@ -209,9 +206,6 @@ bool analyze_syntax(vector<tokens>& token_vect, ofstream& output_file) {
 
 						if ((!stack.empty()) && current->lexeme != "$")
 						{
-							cout << endl << "------------------------------------------" << endl;
-							cout << "Token: " << left << setw(25) << current->token <<
-								"Lexeme: " << current->lexeme << endl;
 							output_file << endl << "------------------------------------------" << endl;
 							output_file << "Token: " << left << setw(25) << current->token <<
 								"Lexeme: " << current->lexeme << endl;
@@ -250,10 +244,6 @@ bool analyze_syntax(vector<tokens>& token_vect, ofstream& output_file) {
 				}
 			}
 
-			cout << endl << "------------------------------------------" << endl;
-			cout << "Token: " << left << setw(25) << it->token <<
-				"Lexeme: " << it->lexeme << endl;
-			cout << "<Empty> -> <Epsilon>" << endl << endl;
 			output_file << endl << "------------------------------------------" << endl;
 			output_file << "Token: " << left << setw(25) << it->token <<
 				"Lexeme: " << it->lexeme << endl;
@@ -287,7 +277,6 @@ void print_rule(string statement, string prod_rule, ofstream& output_file)
 	{
 		if (prod_rule == "i=E")
 		{
-			cout << "<Statement> -> Identifier = <Expression>" << endl;
 			output_file << "<Statement> -> Identifier = <Expression>" << endl;
 		}
 	}
@@ -296,7 +285,6 @@ void print_rule(string statement, string prod_rule, ofstream& output_file)
 	{
 		if (prod_rule == "TQ")
 		{
-			cout << "<Expression> -> <Term> <Expression Prime>" << endl;
 			output_file << "<Expression> -> <Term> <Expression Prime>" << endl;
 		}
 	}
@@ -305,17 +293,14 @@ void print_rule(string statement, string prod_rule, ofstream& output_file)
 	{
 		if (prod_rule == "+TQ")
 		{
-			cout << "<Expression Prime> -> + <Term> <Expression Prime>" << endl;
 			output_file << "<Expression Prime> -> + <Term> <Expression Prime>" << endl;
 		}
 		else if (prod_rule == "-TQ")
 		{
-			cout << "<Expression Prime> -> - <Term> <Expression Prime>" << endl;
 			output_file << "<Expression Prime> -> - <Term> <Expression Prime>" << endl;
 		}
 		if (prod_rule == "e")
 		{
-			cout << "<Expression Prime> -> <Epsilon>" << endl;
 			output_file << "<Expression Prime> -> <Epsilon>" << endl;
 		}
 	}
@@ -324,7 +309,6 @@ void print_rule(string statement, string prod_rule, ofstream& output_file)
 	{
 		if (prod_rule == "FR")
 		{
-			cout << "<Term> -> <Factor> <Term Prime>" << endl;
 			output_file << "<Term> -> <Factor> <Term Prime>" << endl;
 		}
 	}
@@ -333,17 +317,14 @@ void print_rule(string statement, string prod_rule, ofstream& output_file)
 	{
 		if (prod_rule == "*FR")
 		{
-			cout << "<Term Prime> -> * <Factor> <Term Prime>" << endl;
 			output_file << "<Term Prime> -> * <Factor> <Term Prime>" << endl;
 		}
 		else if (prod_rule == "/FR")
 		{
-			cout << "<Term Prime> -> / <Factor> <Term Prime>" << endl;
 			output_file << "<Term Prime> -> / <Factor> <Term Prime>" << endl;
 		}
 		else if (prod_rule == "e")
 		{
-			cout << "<Term Prime> -> <Epsilon>" << endl;
 			output_file << "<Term Prime> -> <Epsilon>" << endl;
 		}
 	}
@@ -352,12 +333,12 @@ void print_rule(string statement, string prod_rule, ofstream& output_file)
 	{
 		if (prod_rule == "i")
 		{
-			cout << "<Factor> -> Identifier" << endl;
+			//cout << "<Factor> -> Identifier" << endl;
 			output_file << "<Factor> -> Identifier" << endl;
 		}
 		else if (prod_rule == "(E)")
 		{
-			cout << "<Factor> -> ( <Expression> )" << endl;
+			//cout << "<Factor> -> ( <Expression> )" << endl;
 			output_file << "<Factor> -> ( <Expression> )" << endl;
 		}
 	}
@@ -430,5 +411,10 @@ int main()
 
 	out.close();
 
+	cout << "File has been generated." << endl;
+
+	system ("notepad output.txt");
+
 	return 0;
+
 }
